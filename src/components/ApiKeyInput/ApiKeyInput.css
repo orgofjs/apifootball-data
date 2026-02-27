@@ -1,0 +1,49 @@
+.apikey-wrap {
+  background: var(--bg-2);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  padding: 16px 20px;
+}
+
+.apikey-label-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 10px;
+}
+
+.apikey-label-row label {
+  margin-bottom: 0;
+}
+
+.apikey-status {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  letter-spacing: 0.08em;
+}
+
+.apikey-status.ok {
+  color: var(--accent);
+}
+
+.apikey-status.missing {
+  color: var(--warning);
+}
+
+.apikey-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.apikey-input {
+  flex: 1;
+  min-width: 0;
+  font-size: 13px;
+  letter-spacing: 0.04em;
+}
+
+.apikey-toggle {
+  flex-shrink: 0;
+  min-width: 60px;
+}
