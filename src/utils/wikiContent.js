@@ -46,8 +46,7 @@ Amacı: endpoint seçimi, parametre girişi ve JSON yanıtı görüntülemeyi te
 
 \`\`\`bash
 # 1. Projeyi klonlayın
-git clone https://github.com/kullanici/apifootball-dashboard
-cd apifootball-dashboard
+git clone https://github.com/orgofjs/apifootball-data.git
 
 # 2. Bağımlılıkları yükleyin
 npm install
