@@ -16,6 +16,9 @@ function Header() {
         <NavLink to="/files" className={({ isActive }) => isActive ? 'nav-link active' : 'nav-link'}>
           SAVED FILES
         </NavLink>
+        <NavLink to="/wiki" className={({ isActive }) => isActive ? 'nav-link active' : 'nav-link'}>
+          WIKI
+        </NavLink>
       </nav>
       <div className="header-meta">
         <span className="header-version mono">v3.football.api-sports.io</span>

@@ -1,21 +1,13 @@
-import { useState } from 'react'
 import ApiKeyInput from '../../components/ApiKeyInput/ApiKeyInput'
 import EndpointSelector from '../../components/EndpointSelector/EndpointSelector'
 import ParamsForm from '../../components/ParamsForm/ParamsForm'
 import ResponsePanel from '../../components/ResponsePanel/ResponsePanel'
 import { findEndpoint } from '../../utils/endpoints'
-import { useFetch } from '../../hooks/useFetch'
 import './FetchPage.css'
 
-function FetchPage() {
-  const [selectedEndpointId, setSelectedEndpointId] = useState(null)
-  const { loading, error, result, savedAs, fetchEndpoint } = useFetch()
-
+function FetchPage({ fetchState, selectedEndpointId, onSelectEndpoint, formState, setFormState }) {
+  const { loading, error, result, savedAs, fetchEndpoint } = fetchState
   const selectedEndpoint = selectedEndpointId ? findEndpoint(selectedEndpointId) : null
-
-  const handleSelect = (id) => {
-    setSelectedEndpointId(id)
-  }
 
   return (
     <div className="fetch-page">
@@ -27,7 +19,7 @@ function FetchPage() {
         <aside className="fetch-sidebar">
           <EndpointSelector
             selectedId={selectedEndpointId}
-            onSelect={handleSelect}
+            onSelect={onSelectEndpoint}
           />
         </aside>
 
@@ -36,6 +28,8 @@ function FetchPage() {
             endpointDef={selectedEndpoint}
             onSubmit={fetchEndpoint}
             loading={loading}
+            formState={formState}
+            setFormState={setFormState}
           />
         </section>
 

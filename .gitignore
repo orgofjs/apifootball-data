@@ -6,7 +6,7 @@ dist/
 dist-ssr/
 
 # Data output (saved API responses — local only)
-data-stat/
+# data-stat/
 
 # Environment variables
 .env

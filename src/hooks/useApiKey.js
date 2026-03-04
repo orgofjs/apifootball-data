@@ -1,18 +1,3 @@
-import { useState, useEffect } from 'react'
-
-const KEY = 'apifootball_api_key'
-
-export function useApiKey() {
-  const [apiKey, setApiKeyState] = useState(() => localStorage.getItem(KEY) || '')
-
-  const setApiKey = (key) => {
-    setApiKeyState(key)
-    if (key) {
-      localStorage.setItem(KEY, key)
-    } else {
-      localStorage.removeItem(KEY)
-    }
-  }
-
-  return { apiKey, setApiKey }
-}
+// Re-exported from ApiKeyContext so the hook works the same way
+// but shares a single React state across all components.
+export { useApiKey } from '../context/ApiKeyContext'

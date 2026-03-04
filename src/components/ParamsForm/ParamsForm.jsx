@@ -1,23 +1,13 @@
-import { useState, useEffect } from 'react'
 import { useApiKey } from '../../hooks/useApiKey'
 import './ParamsForm.css'
 
-function ParamsForm({ endpointDef, onSubmit, loading }) {
+// Fully controlled — all state lives in App.jsx so it survives route changes.
+function ParamsForm({ endpointDef, onSubmit, loading, formState, setFormState }) {
   const { apiKey } = useApiKey()
-  const [params, setParams] = useState({})
-  const [saveAs, setSaveAs] = useState('')
-  const [autoSave, setAutoSave] = useState(false)
-
-  // Reset params when endpoint changes
-  useEffect(() => {
-    setParams({})
-    if (endpointDef) {
-      setSaveAs(endpointDef.id)
-    }
-  }, [endpointDef?.id])
+  const { params, saveAs, autoSave } = formState
 
   const handleParam = (key, value) => {
-    setParams(p => ({ ...p, [key]: value }))
+    setFormState(prev => ({ ...prev, params: { ...prev.params, [key]: value } }))
   }
 
   const handleSubmit = (e) => {
@@ -26,7 +16,6 @@ function ParamsForm({ endpointDef, onSubmit, loading }) {
       alert('Please save your API key first.')
       return
     }
-    // Filter out empty values
     const cleanParams = Object.fromEntries(
       Object.entries(params).filter(([, v]) => v !== '' && v !== null && v !== undefined)
     )
@@ -82,7 +71,7 @@ function ParamsForm({ endpointDef, onSubmit, loading }) {
           <input
             type="checkbox"
             checked={autoSave}
-            onChange={e => setAutoSave(e.target.checked)}
+            onChange={e => setFormState(prev => ({ ...prev, autoSave: e.target.checked }))}
           />
           <span>Save as JSON</span>
         </label>
@@ -91,7 +80,7 @@ function ParamsForm({ endpointDef, onSubmit, loading }) {
             type="text"
             className="save-name-input"
             value={saveAs}
-            onChange={e => setSaveAs(e.target.value)}
+            onChange={e => setFormState(prev => ({ ...prev, saveAs: e.target.value }))}
             placeholder="filename (without extension)"
           />
         )}

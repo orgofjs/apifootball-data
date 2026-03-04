@@ -1,4 +1,4 @@
-// API-Football v3 endpoint definitions
+// API-Football v3 endpoint definitions — comprehensive
 // Each entry: { id, label, endpoint, params: [{ key, label, required, placeholder }] }
 
 export const ENDPOINT_GROUPS = [
@@ -9,6 +9,12 @@ export const ENDPOINT_GROUPS = [
         id: 'status',
         label: 'API Status',
         endpoint: 'status',
+        params: [],
+      },
+      {
+        id: 'timezones',
+        label: 'Timezones',
+        endpoint: 'timezone',
         params: [],
       },
       {
@@ -57,6 +63,16 @@ export const ENDPOINT_GROUPS = [
           { key: 'team', label: 'Team ID', required: false, placeholder: '33' },
         ],
       },
+      {
+        id: 'fixture-rounds',
+        label: 'League Rounds',
+        endpoint: 'fixtures/rounds',
+        params: [
+          { key: 'league', label: 'League ID', required: true, placeholder: '39' },
+          { key: 'season', label: 'Season', required: true, placeholder: '2024' },
+          { key: 'current', label: 'Current Round Only', required: false, placeholder: 'true' },
+        ],
+      },
     ],
   },
   {
@@ -95,6 +111,12 @@ export const ENDPOINT_GROUPS = [
         ],
       },
       {
+        id: 'teams-countries',
+        label: 'Team Countries',
+        endpoint: 'teams/countries',
+        params: [],
+      },
+      {
         id: 'venues',
         label: 'Venues',
         endpoint: 'venues',
@@ -119,9 +141,17 @@ export const ENDPOINT_GROUPS = [
           { key: 'id', label: 'Player ID', required: false, placeholder: '276' },
           { key: 'team', label: 'Team ID', required: false, placeholder: '33' },
           { key: 'league', label: 'League ID', required: false, placeholder: '39' },
-          { key: 'season', label: 'Season', required: false, placeholder: '2023' },
+          { key: 'season', label: 'Season', required: false, placeholder: '2024' },
           { key: 'search', label: 'Search (4+ chars)', required: false, placeholder: 'messi' },
           { key: 'page', label: 'Page', required: false, placeholder: '1' },
+        ],
+      },
+      {
+        id: 'players-profiles',
+        label: 'Player Profiles',
+        endpoint: 'players/profiles',
+        params: [
+          { key: 'player', label: 'Player ID', required: true, placeholder: '276' },
         ],
       },
       {
@@ -215,18 +245,19 @@ export const ENDPOINT_GROUPS = [
         endpoint: 'fixtures',
         params: [
           { key: 'id', label: 'Fixture ID', required: false, placeholder: '592872' },
-          { key: 'ids', label: 'Multiple IDs', required: false, placeholder: '592872-592873' },
-          { key: 'live', label: 'Live (all)', required: false, placeholder: 'all' },
-          { key: 'date', label: 'Date (YYYY-MM-DD)', required: false, placeholder: '2023-10-28' },
+          { key: 'ids', label: 'Multiple IDs (dash-sep)', required: false, placeholder: '592872-592873' },
+          { key: 'live', label: 'Live (all / league-ids)', required: false, placeholder: 'all' },
+          { key: 'date', label: 'Date (YYYY-MM-DD)', required: false, placeholder: '2025-04-05' },
           { key: 'league', label: 'League ID', required: false, placeholder: '39' },
-          { key: 'season', label: 'Season', required: false, placeholder: '2023' },
+          { key: 'season', label: 'Season', required: false, placeholder: '2024' },
           { key: 'team', label: 'Team ID', required: false, placeholder: '33' },
           { key: 'last', label: 'Last N fixtures', required: false, placeholder: '5' },
           { key: 'next', label: 'Next N fixtures', required: false, placeholder: '5' },
-          { key: 'from', label: 'From (YYYY-MM-DD)', required: false, placeholder: '2023-10-01' },
-          { key: 'to', label: 'To (YYYY-MM-DD)', required: false, placeholder: '2023-10-31' },
-          { key: 'round', label: 'Round', required: false, placeholder: 'Regular Season - 10' },
-          { key: 'status', label: 'Status', required: false, placeholder: 'FT' },
+          { key: 'from', label: 'From (YYYY-MM-DD)', required: false, placeholder: '2025-03-01' },
+          { key: 'to', label: 'To (YYYY-MM-DD)', required: false, placeholder: '2025-03-31' },
+          { key: 'round', label: 'Round', required: false, placeholder: 'Regular Season - 28' },
+          { key: 'status', label: 'Status (FT/NS/1H…)', required: false, placeholder: 'FT' },
+          { key: 'venue', label: 'Venue ID', required: false, placeholder: '556' },
           { key: 'timezone', label: 'Timezone', required: false, placeholder: 'Europe/Istanbul' },
         ],
       },
@@ -236,7 +267,7 @@ export const ENDPOINT_GROUPS = [
         endpoint: 'fixtures/rounds',
         params: [
           { key: 'league', label: 'League ID', required: true, placeholder: '39' },
-          { key: 'season', label: 'Season', required: true, placeholder: '2023' },
+          { key: 'season', label: 'Season', required: true, placeholder: '2024' },
           { key: 'current', label: 'Current Only', required: false, placeholder: 'true' },
         ],
       },
@@ -246,14 +277,16 @@ export const ENDPOINT_GROUPS = [
         endpoint: 'fixtures/headtohead',
         params: [
           { key: 'h2h', label: 'Team IDs (e.g. 33-34)', required: true, placeholder: '33-34' },
-          { key: 'date', label: 'Date (YYYY-MM-DD)', required: false, placeholder: '2023-10-28' },
+          { key: 'date', label: 'Date (YYYY-MM-DD)', required: false, placeholder: '2025-04-05' },
           { key: 'league', label: 'League ID', required: false, placeholder: '39' },
-          { key: 'season', label: 'Season', required: false, placeholder: '2023' },
+          { key: 'season', label: 'Season', required: false, placeholder: '2024' },
           { key: 'last', label: 'Last N', required: false, placeholder: '5' },
-          { key: 'next', label: 'Next N', required: false, placeholder: '5' },
-          { key: 'from', label: 'From (YYYY-MM-DD)', required: false, placeholder: '2023-01-01' },
-          { key: 'to', label: 'To (YYYY-MM-DD)', required: false, placeholder: '2023-12-31' },
+          { key: 'next', label: 'Next N', required: false, placeholder: '3' },
+          { key: 'from', label: 'From (YYYY-MM-DD)', required: false, placeholder: '2024-08-01' },
+          { key: 'to', label: 'To (YYYY-MM-DD)', required: false, placeholder: '2025-05-31' },
           { key: 'status', label: 'Status', required: false, placeholder: 'FT' },
+          { key: 'venue', label: 'Venue ID', required: false, placeholder: '556' },
+          { key: 'timezone', label: 'Timezone', required: false, placeholder: 'Europe/Istanbul' },
         ],
       },
       {
@@ -300,7 +333,7 @@ export const ENDPOINT_GROUPS = [
     ],
   },
   {
-    group: 'INJURIES & ODDS',
+    group: 'INJURIES',
     endpoints: [
       {
         id: 'injuries',
@@ -324,6 +357,11 @@ export const ENDPOINT_GROUPS = [
           { key: 'fixture', label: 'Fixture ID', required: true, placeholder: '592872' },
         ],
       },
+    ],
+  },
+  {
+    group: 'ODDS',
+    endpoints: [
       {
         id: 'odds',
         label: 'Odds (Pre-match)',
@@ -341,12 +379,20 @@ export const ENDPOINT_GROUPS = [
       },
       {
         id: 'odds-live',
-        label: 'Odds (Live)',
+        label: 'Odds — Live',
         endpoint: 'odds/live',
         params: [
           { key: 'fixture', label: 'Fixture ID', required: false, placeholder: '592872' },
           { key: 'league', label: 'League ID', required: false, placeholder: '39' },
           { key: 'bet', label: 'Bet ID', required: false, placeholder: '1' },
+        ],
+      },
+      {
+        id: 'odds-mapping',
+        label: 'Odds — Mapping',
+        endpoint: 'odds/mapping',
+        params: [
+          { key: 'page', label: 'Page', required: false, placeholder: '1' },
         ],
       },
       {
